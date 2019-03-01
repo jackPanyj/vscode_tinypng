@@ -17,8 +17,12 @@
     "commands": [
       {
         "command": "extension.compressFile",
-        "title": "压缩当前图片"
-      }
+        "title": "Tinypng: compress this image"
+	  },
+	  {
+		  "command": "extension.compressFolder",
+		  "title": "Tinypng: compress images here"
+	  }
     ],
     "menus": {
       "explorer/context": [
@@ -26,7 +30,11 @@
           "command": "extension.compressFile",
           "when": "resourceLangId == vscode_tinypng",
           "group": "navigation"
-        }
+		},
+		{
+			"command": "extension.compressFolder",
+			"when": ""
+		}
       ]
     },
     "languages": [
