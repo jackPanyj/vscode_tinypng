@@ -10,34 +10,34 @@
     "Other"
   ],
   "activationEvents": [
-	"onCommand:extension.compressFile",
-	"onCommand:extension.compressFolder"
+    "onCommand:extension.compressFile",
+    "onCommand:extension.compressFolder"
   ],
   "main": "./out/extension.js",
   "publisher": "jackpanyj",
   "contributes": {
-	"configuration": {
-		"title": "tinypng config",
-		"properties": {
-			"tinypng.apiKeys": {
-				"type": "array",
-				"items": {
-					"type": "string"
-				},
-				"default": false,
-				"description": "tinypng api key"
-			}
-		}
-	},
+    "configuration": {
+      "title": "tinypng config",
+      "properties": {
+        "tinypng.apiKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": false,
+          "description": "tinypng api key"
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.compressFile",
         "title": "Tinypng: compress this image"
-	  },
-	  {
-		  "command": "extension.compressFolder",
-		  "title": "Tinypng: compress images here"
-	  }
+      },
+      {
+        "command": "extension.compressFolder",
+        "title": "Tinypng: compress images here"
+      }
     ],
     "menus": {
       "explorer/context": [
@@ -45,12 +45,12 @@
           "command": "extension.compressFile",
           "when": "resourceLangId == vscode_tinypng",
           "group": "navigation"
-		},
-		{
-			"command": "extension.compressFolder",
-			"when": "explorerResourceIsFolder",
-			"group": "navigation"
-		}
+        },
+        {
+          "command": "extension.compressFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
       ]
     },
     "languages": [
@@ -80,5 +80,6 @@
   },
   "dependencies": {
     "tinify": "^1.6.0-beta.2"
-  }
+  },
+  "__npminstall_done": false
 }
