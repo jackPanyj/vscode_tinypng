@@ -2,13 +2,14 @@
   "name": "tinypng",
   "displayName": "tinypng",
   "description": "tiny png with many keys",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.31.0"
   },
   "repository": {
     "url": "https://github.com/jackPanyj/vscode_tinypng"
   },
+  "icon": "panda-happy.png",
   "categories": [
     "Other"
   ],
