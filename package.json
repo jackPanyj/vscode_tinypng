@@ -27,7 +27,7 @@
           "items": {
             "type": "string"
           },
-          "default": false,
+          "default": [],
           "description": "tinypng api key"
         }
       }
