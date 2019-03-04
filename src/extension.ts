@@ -2,25 +2,51 @@
 import tinify from 'tinify';
 import * as vscode from 'vscode';
 
+let apiKeys: string[] = [];
+
+let errTimes: number = 0;
+
+const setKey = () => {
+	tinify.key = apiKeys[0];
+	const tmp = apiKeys.shift() as string;
+	apiKeys.push(tmp);
+};
+
 const compressImage = (file: any) => {
 	const status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
-	status.text = '正在压缩图片' + file.path;
+	status.text = 'compressing: ' + file.path;
 	status.show();
 	const source = tinify.fromFile(file.path);
 	source.toFile(file.path, (err) => {
 		status.hide();
 		if (err) {
+			errTimes += 1;
+			if (errTimes === apiKeys.length) {
+				vscode.window.showErrorMessage('apiKeys 已经用完');
+				return;
+			}
+			setKey();
 			compressImage(file);
 		}
 	});
 };
 
+const compressFolder = (folder: any)=> {
+	vscode.workspace.findFiles(new vscode.RelativePattern(folder.path, '**/*.{png,jpg,jpeg}'))
+	.then(files => {
+		files.forEach(compressImage);
+	});
+};
 
 export function activate(context: vscode.ExtensionContext) {
-	tinify.key = 'H59Q1cgdhz7FFqQDhp2x3QNnmN56jzyT';
-	let disposable = vscode.commands.registerCommand('extension.compressFile', compressImage);
-
-	context.subscriptions.push(disposable);
+	apiKeys = vscode.workspace.getConfiguration('tinypng').get('apiKeys') as string[];
+	if (apiKeys == null) {
+		vscode.window.showErrorMessage('请填写 tinypng 的 apiKeys');
+		return;
+	}
+	setKey();
+	context.subscriptions.push(vscode.commands.registerCommand('extension.compressFolder', compressFolder));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.compressFile', compressImage));
 }
 
 // this method is called when your extension is deactivated

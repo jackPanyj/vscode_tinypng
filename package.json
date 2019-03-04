@@ -10,10 +10,24 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.compressFile"
+	"onCommand:extension.compressFile",
+	"onCommand:extension.compressFolder"
   ],
   "main": "./out/extension.js",
   "contributes": {
+	"configuration": {
+		"title": "tinypng config",
+		"properties": {
+			"tinypng.apiKeys": {
+				"type": "array",
+				"items": {
+					"type": "string"
+				},
+				"default": false,
+				"description": "tinypng api key"
+			}
+		}
+	},
     "commands": [
       {
         "command": "extension.compressFile",
@@ -33,7 +47,8 @@
 		},
 		{
 			"command": "extension.compressFolder",
-			"when": ""
+			"when": "explorerResourceIsFolder",
+			"group": "navigation"
 		}
       ]
     },
