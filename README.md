@@ -10,6 +10,7 @@ when you have the **API key**, go to the settings of VSCode.
     tinypng.apiKeys: ['your own apiKey']
 ```
 
+if you don't have, you can use `Fm3dwFLB4Ch65H8H6SDp83LWhxb0M4bV` for test.
 
 you can write many keys, when the first one is up to the amount of 500, it will use the next one Automatically.
 
