@@ -22,7 +22,7 @@ const compressImage = (file: any) => {
 		if (err) {
 			errTimes += 1;
 			if (errTimes === apiKeys.length) {
-				vscode.window.showErrorMessage('apiKeys 已经用完');
+				vscode.window.showErrorMessage('apiKeys maybe has done');
 				return;
 			}
 			setKey();
@@ -41,7 +41,7 @@ const compressFolder = (folder: any)=> {
 export function activate(context: vscode.ExtensionContext) {
 	apiKeys = vscode.workspace.getConfiguration('tinypng').get('apiKeys') as string[];
 	if (apiKeys == null) {
-		vscode.window.showErrorMessage('请填写 tinypng 的 apiKeys');
+		vscode.window.showErrorMessage('please set your tinypng apiKeys');
 		return;
 	}
 	setKey();
